@@ -1,0 +1,2562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+  <title>Sabari Scientific Glass Equipments | CORNSIL® Laboratory Glasswares</title>
+  <style>
+    :root {
+      --ink1: #120c24;
+      /* deep violet-black */
+      --ink2: #1c1440;
+      /* panel dark */
+      --violet: #7c3aed;
+      --violet-2: #a78bfa;
+      --cyan: #06b6d4;
+      --cyan-2: #67e8f9;
+      --grad: linear-gradient(115deg, var(--violet), var(--cyan));
+      --bg: #f6f5fc;
+      --card: #ffffff;
+      --text: #1e1b2e;
+      --grey: #6b6b83;
+      --line: #e6e3f5;
+      --ok: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      perspective: 1400px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn .45s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px) rotateX(2deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ===== topbar ===== */
+    .topbar {
+      background: var(--ink1);
+      color: #c9c3ea;
+      font-size: 12.5px;
+    }
+
+    .topbar .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 36px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left {
+      display: flex;
+      gap: 20px;
+    }
+
+    .topbar-left span {
+      white-space: nowrap;
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .topbar-right a {
+      color: #c9c3ea;
+    }
+
+    .dot {
+      color: var(--cyan-2);
+    }
+
+    /* ===== header ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flame {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .3px;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--line);
+      animation: spin 12s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .brand-text .name {
+      font-family: Georgia, serif;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .brand-text .sub {
+      font-weight: 700;
+      color: var(--ink1);
+      font-size: 13px;
+      letter-spacing: .4px;
+    }
+
+    .brand-text .tag {
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      color: var(--grey);
+      margin-top: 2px;
+    }
+
+    nav.mainlinks {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink1);
+    }
+
+    nav.mainlinks a {
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav.mainlinks a.active,
+    nav.mainlinks a:hover {
+      color: var(--violet);
+      border-color: var(--cyan);
+    }
+
+    .navicons {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .navicons .icon {
+      font-size: 17px;
+      color: var(--ink1);
+      cursor: pointer;
+    }
+
+    .cart-btn {
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--grad);
+      color: #fff;
+      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 6px;
+      letter-spacing: .3px;
+      transition: transform .18s, box-shadow .18s;
+    }
+
+    .btn-primary {
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, .28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) rotateX(4deg);
+      box-shadow: 0 14px 26px rgba(124, 58, 237, .38);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .55);
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .btn-dark {
+      background: var(--ink1);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink1);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ===== hero ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, rgba(10, 6, 30, .94), rgba(28, 20, 64, .75) 55%, rgba(6, 10, 30, .4)),
+        url('https://2.wlimg.com/product_images/bc-full/2021/1/3209456/round-bottom-flask-cornsil-1610005059-5679971.jpeg') right center/cover no-repeat;
+      color: #fff;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, .25), transparent 55%);
+    }
+
+    .hero-inner {
+      position: relative;
+      padding: 70px 24px 60px;
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      color: var(--cyan-2);
+      font-weight: 700;
+      letter-spacing: .5px;
+      font-size: 14.5px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      line-height: 1.14;
+      margin-bottom: 16px;
+    }
+
+    .hero p.lead {
+      color: #d8d5ef;
+      font-size: 15.5px;
+      max-width: 480px;
+      margin-bottom: 24px;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      font-size: 12.5px;
+      color: #e7e4f7;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge-corner {
+      position: absolute;
+      top: 34px;
+      right: 56px;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a1c5c, #120c24 70%);
+      border: 2px solid var(--cyan);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 10.5px;
+      line-height: 1.3;
+      animation: float 4.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(3deg);
+      }
+    }
+
+    .badge-corner .stars {
+      color: var(--cyan-2);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+    }
+
+    /* ===== category strip ===== */
+    .catstrip {
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(30, 15, 80, .1);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin: -44px auto 0;
+      position: relative;
+      z-index: 5;
+      max-width: 1232px;
+      padding: 26px 8px;
+    }
+
+    .catgrid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 4px;
+    }
+
+    .catitem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+      padding: 12px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink1);
+      border-radius: 8px;
+      transition: transform .2s;
+    }
+
+    .catitem:hover {
+      background: #f7f5ff;
+      transform: translateY(-4px) rotateX(6deg);
+    }
+
+    .catitem svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--ink1);
+    }
+
+    .catitem.active {
+      color: var(--violet);
+    }
+
+    .catitem.active svg {
+      stroke: var(--violet);
+    }
+
+    .catitem .under {
+      width: 22px;
+      height: 2px;
+      background: var(--grad);
+      margin-top: 1px;
+      visibility: hidden;
+      border-radius: 2px;
+    }
+
+    .catitem.active .under {
+      visibility: visible;
+    }
+
+    /* ===== feature strip ===== */
+    .featstrip {
+      background: #fbfaff;
+      border-top: 1px solid var(--line);
+    }
+
+    .featgrid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 32px 0;
+    }
+
+    .featitem {
+      display: flex;
+      gap: 12px;
+      padding: 0 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .featitem:last-child {
+      border-right: none;
+    }
+
+    .featitem svg {
+      width: 34px;
+      height: 34px;
+      stroke: var(--violet);
+      flex: none;
+    }
+
+    .featitem h4 {
+      font-size: 14px;
+      color: var(--ink1);
+      margin-bottom: 3px;
+    }
+
+    .featitem p {
+      font-size: 12px;
+      color: var(--grey);
+      line-height: 1.4;
+    }
+
+    /* ===== section head ===== */
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 40px;
+    }
+
+    .section-head h2 {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      color: var(--ink1);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--grey);
+      font-size: 14.5px;
+    }
+
+    .eyebrow-dark {
+      color: var(--violet);
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* ===== 3D product card ===== */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .prod-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-8px) rotateX(6deg) rotateY(-4deg);
+      box-shadow: 0 24px 40px rgba(30, 15, 80, .18);
+    }
+
+    .prod-card .imgwrap {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #f3f0ff, #e8f8fb);
+    }
+
+    .prod-card .imgwrap svg {
+      width: 64px;
+      height: 64px;
+      stroke: var(--violet);
+      animation: bob 3.6s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .prod-card .body {
+      padding: 16px 16px 18px;
+    }
+
+    .prod-card h4 {
+      font-size: 14.5px;
+      color: var(--ink1);
+      margin-bottom: 4px;
+    }
+
+    .prod-card p.meta {
+      font-size: 11.5px;
+      color: var(--grey);
+      margin-bottom: 10px;
+    }
+
+    .prod-card .price {
+      font-weight: 800;
+      color: var(--violet);
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      color: #f5a524;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    /* ===== product detail ===== */
+    .pd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: flex-start;
+      margin-bottom: 50px;
+    }
+
+    .pd-imgbox {
+      background: linear-gradient(160deg, #f3f0ff, #e8f8fb);
+      border-radius: 14px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pd-imgbox svg {
+      width: 170px;
+      height: 170px;
+      stroke: var(--violet);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .pd-title {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      color: var(--ink1);
+      margin-bottom: 8px;
+    }
+
+    .pd-price {
+      font-size: 26px;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 10px 0;
+    }
+
+    .instock {
+      color: var(--ok);
+      font-weight: 700;
+      font-size: 12.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .instock::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+
+    .capgrid {
+      display: flex;
+      gap: 8px;
+      margin: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .capchip {
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .capchip.active {
+      border-color: var(--violet);
+      color: var(--violet);
+      background: #f7f5ff;
+    }
+
+    .qtyrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .qtybox {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .qtybox button {
+      width: 36px;
+      height: 38px;
+      background: #fbfaff;
+      font-size: 16px;
+      color: var(--ink1);
+    }
+
+    .qtybox span {
+      width: 36px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .tabbar {
+      display: flex;
+      gap: 26px;
+      border-bottom: 1px solid var(--line);
+      margin: 36px 0 20px;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--grey);
+    }
+
+    .tabbar span {
+      padding-bottom: 12px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .tabbar span.active {
+      color: var(--violet);
+      border-color: var(--violet);
+    }
+
+    .pd-desc {
+      color: var(--grey);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .pd-desc li {
+      margin: 6px 0 6px 18px;
+      list-style: disc;
+    }
+
+    /* ===== about ===== */
+    .about {
+      padding: 76px 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-imgs {
+      position: relative;
+    }
+
+    .about-imgs img {
+      border-radius: 10px;
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .badge-exp {
+      position: absolute;
+      bottom: -22px;
+      left: -22px;
+      background: var(--ink1);
+      color: #fff;
+      padding: 20px 24px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(30, 15, 80, .3);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .badge-exp b {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    .badge-exp span {
+      font-size: 11px;
+      letter-spacing: .4px;
+    }
+
+    .about h2 {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      color: var(--ink1);
+      margin-bottom: 16px;
+    }
+
+    .about p {
+      color: var(--grey);
+      font-size: 14.5px;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .infolist li {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13.5px;
+    }
+
+    .infolist li b {
+      color: var(--ink1);
+    }
+
+    .stats4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 36px 0;
+      text-align: center;
+    }
+
+    .stats4 .s b {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    .stats4 .s span {
+      font-size: 12px;
+      color: var(--grey);
+    }
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .mv-card {
+      background: #fbfaff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 26px;
+    }
+
+    .mv-card h4 {
+      color: var(--ink1);
+      margin-bottom: 8px;
+    }
+
+    .mv-card p {
+      color: var(--grey);
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+
+    /* ===== industries ===== */
+    .industries {
+      padding: 76px 0;
+      background: #fbfaff;
+    }
+
+    .ind-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .ind-card {
+      padding: 28px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      text-align: center;
+      background: #fff;
+      transition: transform .25s;
+    }
+
+    .ind-card:hover {
+      transform: translateY(-6px) rotateX(6deg);
+      box-shadow: 0 18px 30px rgba(30, 15, 80, .12);
+    }
+
+    .ind-card svg {
+      width: 38px;
+      height: 38px;
+      stroke: var(--violet);
+      margin: 0 auto 14px;
+    }
+
+    .ind-card h4 {
+      font-size: 14px;
+      color: var(--ink1);
+      margin-bottom: 5px;
+    }
+
+    .ind-card p {
+      font-size: 12px;
+      color: var(--grey);
+    }
+
+    /* ===== ctaband ===== */
+    .ctaband {
+      background: linear-gradient(120deg, var(--ink1), #241a55);
+      color: #fff;
+      padding: 52px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ctaband .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ctaband h3 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .ctaband p {
+      color: #cfc9ee;
+      font-size: 13.5px;
+    }
+
+    /* ===== two-col page layout (category/products page) ===== */
+    .pp-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 30px;
+      padding: 36px 0 70px;
+    }
+
+    .sidebox {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .sidebox h5 {
+      font-size: 13.5px;
+      color: var(--ink1);
+      margin-bottom: 14px;
+    }
+
+    .sidebox li {
+      padding: 7px 0;
+      font-size: 13px;
+      color: var(--grey);
+      cursor: pointer;
+    }
+
+    .sidebox li:hover,
+    .sidebox li.active {
+      color: var(--violet);
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--grey);
+    }
+
+    .searchbox {
+      display: flex;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .searchbox input {
+      border: none;
+      padding: 9px 12px;
+      font-size: 13px;
+      width: 220px;
+      outline: none;
+    }
+
+    .searchbox button {
+      padding: 9px 14px;
+      background: var(--grad);
+      color: #fff;
+    }
+
+    /* ===== cart page ===== */
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 30px;
+      padding: 36px 0 70px;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 70px 1fr auto auto auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-row .thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #f3f0ff, #e8f8fb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-row .thumb svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--violet);
+    }
+
+    .cart-row h5 {
+      font-size: 13.5px;
+      color: var(--ink1);
+    }
+
+    .cart-row .sub {
+      font-size: 11.5px;
+      color: var(--grey);
+    }
+
+    .cart-row .price {
+      font-weight: 700;
+      color: var(--ink1);
+      font-size: 13px;
+    }
+
+    .summary-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+      height: fit-content;
+    }
+
+    .summary-box h4 {
+      margin-bottom: 16px;
+    }
+
+    .sumrow {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      padding: 8px 0;
+      color: var(--grey);
+    }
+
+    .sumrow.total {
+      border-top: 1px solid var(--line);
+      margin-top: 8px;
+      padding-top: 14px;
+      font-weight: 800;
+      color: var(--ink1);
+      font-size: 15px;
+    }
+
+    .coupon {
+      display: flex;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .coupon input {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 12.5px;
+    }
+
+    /* ===== checkout ===== */
+    .co-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 30px;
+      padding: 36px 0 70px;
+    }
+
+    .co-steps {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 28px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--grey);
+    }
+
+    .co-steps span.active {
+      color: var(--violet);
+    }
+
+    .formgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .formgrid.full {
+      grid-template-columns: 1fr;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: var(--grey);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 11px 12px;
+      font-size: 13.5px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--violet);
+    }
+
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    /* ===== account/dashboard ===== */
+    .acc-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 26px;
+      padding: 36px 0 70px;
+    }
+
+    .acc-side li {
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--grey);
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+
+    .acc-side li.active,
+    .acc-side li:hover {
+      background: #f7f5ff;
+      color: var(--violet);
+      font-weight: 700;
+    }
+
+    .acc-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .acc-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .acc-card b {
+      font-size: 24px;
+      display: block;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .acc-card span {
+      font-size: 12px;
+      color: var(--grey);
+    }
+
+    table.orders {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    table.orders th,
+    table.orders td {
+      padding: 13px 16px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    table.orders th {
+      color: var(--grey);
+      font-weight: 700;
+      background: #fbfaff;
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .status-pill.shipped {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .status-pill.completed {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status-pill.processing {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    /* ===== track order ===== */
+    .track-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .track-input {
+      display: flex;
+      gap: 10px;
+      margin: 24px 0 40px;
+    }
+
+    .track-input input {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--line);
+      z-index: 0;
+    }
+
+    .timeline .tstep {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      flex: 1;
+    }
+
+    .tstep .circ {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #e6e3f5;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .tstep.done .circ {
+      background: var(--grad);
+    }
+
+    .tstep p {
+      font-size: 12px;
+      color: var(--grey);
+      font-weight: 600;
+    }
+
+    .tstep small {
+      font-size: 10.5px;
+      color: #aaa;
+    }
+
+    /* ===== blog ===== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blog-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform .25s;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(30, 15, 80, .12);
+    }
+
+    .blog-card img {
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .blog-card .body {
+      padding: 18px;
+    }
+
+    .blog-card .date {
+      font-size: 11px;
+      color: var(--grey);
+      margin-bottom: 6px;
+    }
+
+    .blog-card h4 {
+      font-size: 14.5px;
+      color: var(--ink1);
+      margin-bottom: 8px;
+    }
+
+    .blog-card p {
+      font-size: 12.5px;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ===== contact ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 0 80px;
+    }
+
+    .cinfo-card {
+      display: flex;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cinfo-card svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--violet);
+      flex: none;
+    }
+
+    .cinfo-card b {
+      display: block;
+      color: var(--ink1);
+      font-size: 13.5px;
+    }
+
+    .cinfo-card span {
+      font-size: 12.5px;
+      color: var(--grey);
+    }
+
+    /* ===== footer ===== */
+    footer {
+      background: #0d0722;
+      color: #a8a2c4;
+      padding: 56px 0 0;
+      font-size: 13px;
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.3fr;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #1c1440;
+    }
+
+    .foot-grid h5 {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .foot-grid li {
+      margin-bottom: 9px;
+    }
+
+    .foot-grid a:hover {
+      color: var(--cyan-2);
+    }
+
+    .foot-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .foot-social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1c1440;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottombar {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0;
+      font-size: 12px;
+      color: #6f6890;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ===== toast ===== */
+    #toast {
+      position: fixed;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--ink1);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      z-index: 999;
+      transition: transform .35s ease;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .3);
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width:1024px) {
+      .catgrid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .featgrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featitem {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 16px 6px;
+      }
+
+      .about-grid,
+      .pd-grid,
+      .pp-layout,
+      .cart-layout,
+      .co-layout,
+      .acc-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prod-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ind-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .foot-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .acc-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav.mainlinks {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="toast"></div>
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-left">
+        <span>◆ ISO 9001:2015 Certified Company</span>
+        <span>🌐 Worldwide Delivery</span>
+        <span>📦 Bulk Orders &amp; Custom Manufacturing</span>
+      </div>
+      <div class="topbar-right">
+        <a href="tel:+919444020250">📞 +91 94440 20250</a>
+        <a href="mailto:info@sabariscientific.com">✉ info@sabariscientific.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="wrap navrow">
+      <a class="brand" onclick="showPage('home')">
+        <div class="flame">CORNSIL</div>
+        <div class="brand-text">
+          <div class="name">Sabari Scientific</div>
+          <div class="sub">GLASS EQUIPMENTS</div>
+          <div class="tag">QUALITY THAT SPEAKS</div>
+        </div>
+      </a>
+      <nav class="mainlinks" id="mainnav">
+        <a data-page="home" onclick="showPage('home')" class="active">HOME</a>
+        <a data-page="products" onclick="showPage('products')">PRODUCTS</a>
+        <a data-page="custom" onclick="showPage('custom')">CUSTOM MANUFACTURING</a>
+        <a data-page="about" onclick="showPage('about')">ABOUT US</a>
+        <a data-page="blog" onclick="showPage('blog')">BLOG</a>
+        <a data-page="contact" onclick="showPage('contact')">CONTACT US</a>
+      </nav>
+      <div class="navicons">
+        <span class="icon" onclick="showPage('track')" title="Track Order">🚚</span>
+        <span class="icon" onclick="showPage('account')" title="My Account">👤</span>
+        <span class="icon cart-btn" onclick="showPage('cart')" title="Cart">🛒<span class="badge"
+            id="cartBadge">0</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- HOME PAGE -->
+  <!-- ============================================================ -->
+  <section class="page active" id="page-home">
+    <section class="hero">
+      <div class="badge-corner">
+        <div class="stars">★★★★★</div>
+        PREMIUM<br>BOROSILICATE<br>GLASS
+      </div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div class="eyebrow">Manufacturer, Exporter &amp; Supplier of</div>
+          <h1>Premium Scientific<br>Glass Equipments</h1>
+          <p class="lead">Delivering precision-engineered CORNSIL® borosilicate glassware for laboratories, industries
+            &amp; research worldwide, from Pondicherry, India.</p>
+          <div class="stat-row">
+            <div class="stat"><b>30+</b>Years Experience</div>
+            <div class="stat"><b>1500+</b>Products Range</div>
+            <div class="stat"><b>40+</b>Countries Worldwide</div>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" onclick="showPage('products')">SHOP NOW →</a>
+            <a class="btn btn-outline" onclick="showPage('contact')">REQUEST QUOTE</a>
+            <a class="btn btn-dark" onclick="toast('Catalogue download started')">DOWNLOAD CATALOGUE ⬇</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="catstrip">
+        <div class="catgrid" id="catStripHome"></div>
+      </div>
+    </div>
+
+    <div class="featstrip">
+      <div class="wrap">
+        <div class="featgrid">
+          <div class="featitem"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path
+                d="M3 16V6a1 1 0 0 1 1-1h9v11M3 16h13M16 16h5v-4l-3-4h-2v8zM8 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+            </svg>
+            <div>
+              <h4>Fast &amp; Safe Delivery</h4>
+              <p>Timely delivery across India &amp; worldwide</p>
+            </div>
+          </div>
+          <div class="featitem"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <rect x="3" y="7" width="18" height="13" rx="1" />
+              <path d="M3 11h18M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+            <div>
+              <h4>Bulk Orders</h4>
+              <p>Special pricing for institutional orders</p>
+            </div>
+          </div>
+          <div class="featitem"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82" />
+            </svg>
+            <div>
+              <h4>Custom Manufacturing</h4>
+              <p>Tailored glassware to your specification</p>
+            </div>
+          </div>
+          <div class="featitem"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            <div>
+              <h4>Quality Assurance</h4>
+              <p>100% quality tested before dispatch</p>
+            </div>
+          </div>
+          <div class="featitem"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+              <path d="M21 19a2 2 0 0 1-2 2h-1v-7h3v5zM3 19a2 2 0 0 0 2 2h1v-7H3v5z" />
+            </svg>
+            <div>
+              <h4>24/7 Support</h4>
+              <p>We're here to help you anytime</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="about" style="padding-bottom:0;">
+      <div class="wrap">
+        <div class="eyebrow-dark" style="text-align:left;">FEATURED PRODUCTS</div>
+        <h2 style="font-family:Georgia,serif;font-size:28px;color:var(--ink1);margin-bottom:26px;">Best Selling
+          Glassware</h2>
+        <div class="prod-grid" id="homeProdGrid"></div>
+        <div style="text-align:center;margin:36px 0 70px;">
+          <a class="btn btn-dark" onclick="showPage('products')">VIEW ALL PRODUCTS →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="industries">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow-dark">WHO WE SERVE</div>
+          <h2>Industries We Supply To</h2>
+        </div>
+        <div class="ind-grid">
+          <div class="ind-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path d="M9 2h6M10 2v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V2" />
+            </svg>
+            <h4>Research Laboratories</h4>
+            <p>Precision glassware for scientific research</p>
+          </div>
+          <div class="ind-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path d="M12 2v6M8 22h8l-1-6H9l-1 6zM7 12h10l1 4H6l1-4z" />
+            </svg>
+            <h4>Chemical Industries</h4>
+            <p>Reactors, condensers &amp; distillation setups</p>
+          </div>
+          <div class="ind-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M8 12h8M12 8v8" />
+            </svg>
+            <h4>Pharmaceutical</h4>
+            <p>Dropping &amp; weighing bottles, storage glassware</p>
+          </div>
+          <div class="ind-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+              <path d="M4 8h16M6 8v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8" />
+            </svg>
+            <h4>Educational Institutes</h4>
+            <p>Complete glassware sets for teaching labs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ctaband">
+      <div class="wrap">
+        <div>
+          <h3>Need custom-manufactured glassware?</h3>
+          <p>Tell us your specification — we'll get you the best price possible.</p>
+        </div>
+        <a class="btn btn-primary" onclick="showPage('custom')">REQUEST A QUOTE →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PRODUCTS / CATEGORY PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-products">
+    <div class="wrap pp-layout">
+      <aside>
+        <div class="sidebox">
+          <h5>CATEGORIES</h5>
+          <ul id="catFilterList"></ul>
+        </div>
+        <div class="sidebox">
+          <h5>PRICE RANGE</h5>
+          <input type="range" id="priceRange" min="100" max="2000" value="2000" style="width:100%;"
+            oninput="filterProducts()">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);margin-top:6px;">
+            <span>₹100</span><span id="priceMax">₹2000</span>
+          </div>
+        </div>
+        <div class="sidebox">
+          <h5>MATERIAL</h5>
+          <ul>
+            <li>Borosilicate Glass</li>
+            <li>Quartz Glass</li>
+            <li>PTFE</li>
+          </ul>
+        </div>
+      </aside>
+      <div>
+        <div class="toolbar">
+          <span id="resultCount">Showing products</span>
+          <div class="searchbox">
+            <input id="searchInput" placeholder="Search products…" oninput="filterProducts()">
+            <button onclick="filterProducts()">🔍</button>
+          </div>
+        </div>
+        <div class="prod-grid" id="productsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PRODUCT DETAIL PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-detail">
+    <div class="wrap" style="padding-top:30px;">
+      <div style="font-size:12.5px;color:var(--grey);margin-bottom:20px;">
+        <a onclick="showPage('home')">Home</a> / <a onclick="showPage('products')">Products</a> / <span
+          id="pdCrumb"></span>
+      </div>
+      <div class="pd-grid">
+        <div class="pd-imgbox">
+          <div id="pdIcon"></div>
+        </div>
+        <div>
+          <h1 class="pd-title" id="pdTitle"></h1>
+          <div class="stars">★★★★★ <span style="color:var(--grey);font-weight:600;">(48 Reviews)</span></div>
+          <div class="pd-price" id="pdPrice"></div>
+          <div class="instock">In Stock &amp; Available</div>
+          <p style="color:var(--grey);font-size:13.5px;" id="pdMeta"></p>
+          <div class="capgrid" id="pdCaps"></div>
+          <div class="qtyrow">
+            <div class="qtybox">
+              <button onclick="pdQty(-1)">−</button><span id="pdQty">1</span><button onclick="pdQty(1)">+</button>
+            </div>
+            <a class="btn btn-primary" onclick="addToCartFromDetail()">ADD TO CART</a>
+            <a class="btn btn-ghost" onclick="showPage('custom')">REQUEST QUOTE</a>
+          </div>
+          <div class="tabbar">
+            <span class="active">Description</span><span>Specifications</span><span>Applications</span><span>FAQs</span>
+          </div>
+          <div class="pd-desc" id="pdDesc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CART PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-cart">
+    <div class="wrap cart-layout">
+      <div>
+        <h2 style="font-family:Georgia,serif;font-size:24px;color:var(--ink1);margin-bottom:20px;">Your Cart</h2>
+        <div id="cartRows"></div>
+        <div id="cartEmpty" style="display:none;padding:60px 0;text-align:center;color:var(--grey);">
+          Your cart is empty. <a onclick="showPage('products')" style="color:var(--violet);font-weight:700;">Browse
+            products →</a>
+        </div>
+      </div>
+      <div class="summary-box">
+        <h4>Order Summary</h4>
+        <div class="sumrow"><span>Subtotal</span><span id="sumSubtotal">₹0.00</span></div>
+        <div class="sumrow"><span>Shipping</span><span>₹150.00</span></div>
+        <div class="sumrow"><span>GST (18%)</span><span id="sumGst">₹0.00</span></div>
+        <div class="sumrow total"><span>Total</span><span id="sumTotal">₹0.00</span></div>
+        <div class="coupon"><input placeholder="Apply coupon code"><button class="btn btn-ghost btn-sm">APPLY</button>
+        </div>
+        <a class="btn btn-primary btn-block" onclick="showPage('checkout'); renderCheckout();">PROCEED TO CHECKOUT →</a>
+        <a class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="showPage('products')">CONTINUE SHOPPING</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CHECKOUT PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-checkout">
+    <div class="wrap co-layout">
+      <div>
+        <div class="co-steps">
+          <span class="active">1. Shipping Address</span><span>2. Payment Method</span><span>3. Review &amp; Place
+            Order</span>
+        </div>
+        <div class="form-card">
+          <div class="formgrid">
+            <div class="field"><label>Full Name</label><input placeholder="Enter your full name"></div>
+            <div class="field"><label>Company Name (Optional)</label><input placeholder="Company name"></div>
+            <div class="field"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+            <div class="field"><label>Phone Number</label><input placeholder="+91"></div>
+          </div>
+          <div class="formgrid full">
+            <div class="field"><label>Address Line 1</label><input placeholder="Street address"></div>
+            <div class="field"><label>Address Line 2 (Optional)</label><input placeholder="Apartment, suite, etc.">
+            </div>
+          </div>
+          <div class="formgrid">
+            <div class="field"><label>City</label><input placeholder="City"></div>
+            <div class="field"><label>State</label><input placeholder="State"></div>
+            <div class="field"><label>PIN Code</label><input placeholder="PIN code"></div>
+            <div class="field"><label>Country</label><input value="India"></div>
+          </div>
+          <a class="btn btn-primary btn-block" onclick="placeOrder()">CONTINUE TO PAYMENT →</a>
+        </div>
+      </div>
+      <div class="summary-box">
+        <h4>Order Summary</h4>
+        <div id="coCartRows"></div>
+        <div class="sumrow"><span>Subtotal</span><span id="coSubtotal">₹0.00</span></div>
+        <div class="sumrow"><span>Shipping</span><span>₹150.00</span></div>
+        <div class="sumrow"><span>GST (18%)</span><span id="coGst">₹0.00</span></div>
+        <div class="sumrow total"><span>Total</span><span id="coTotal">₹0.00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT US PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-about">
+    <section class="about">
+      <div class="wrap about-grid">
+        <div class="about-imgs">
+          <img
+            src="https://2.wlimg.com/product_images/bc-full/2020/3/3209456/kjeldahl-distillation-unit-1583301401-4947755.jpeg"
+            alt="Sabari Scientific facility">
+          <div class="badge-exp"><b>30+</b><span>YEARS OF<br>EXPERTISE</span></div>
+        </div>
+        <div>
+          <div class="eyebrow-dark" style="text-align:left;">ABOUT THE COMPANY</div>
+          <h2>Precision Glassware, Trusted Since 1995</h2>
+          <p>Sabari Scientific Glass Equipments, an ISO 9001:2015 certified company based in Ariyankuppam, Pondicherry,
+            is a Manufacturer, Exporter and Supplier of laboratory glasswares, laboratory burettes, conical flasks,
+            laboratory funnels, laboratory tools, reagent bottles, weighing bottles and more.</p>
+          <p>We use Borosilicate 3.3 tubes and approved-standard designs to ensure quality workmanship, and offer our
+            laboratory equipment under our own registered brand, <b>CORNSIL®</b>. Under the guidance of Proprietor Mr.
+            Ramachandran R., the company has earned recognition across the worldwide market.</p>
+          <ul class="infolist">
+            <li><span>Nature of Business</span><b>Manufacturer, Exporter, Supplier</b></li>
+            <li><span>Year of Establishment</span><b>1995</b></li>
+            <li><span>Brand</span><b>CORNSIL®</b></li>
+            <li><span>Location</span><b>Ariyankuppam, Pondicherry, India</b></li>
+          </ul>
+          <a class="btn btn-primary" onclick="showPage('contact')">GET IN TOUCH →</a>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="stats4">
+          <div class="s"><b>1500+</b><span>Products</span></div>
+          <div class="s"><b>100000+</b><span>Orders Delivered</span></div>
+          <div class="s"><b>500+</b><span>Satisfied Clients</span></div>
+          <div class="s"><b>40+</b><span>Countries</span></div>
+        </div>
+        <div class="mv-grid">
+          <div class="mv-card">
+            <h4>Our Mission</h4>
+            <p>Enable every laboratory to work confidently with precision-manufactured, high-quality borosilicate
+              glassware backed by trusted service.</p>
+          </div>
+          <div class="mv-card">
+            <h4>Our Vision</h4>
+            <p>Be the world's most reliable name in scientific glassware, known for craftsmanship, consistency and
+              long-term partnerships.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CUSTOM MANUFACTURING PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-custom">
+    <div class="wrap" style="padding:60px 0 80px;">
+      <div class="pd-grid" style="align-items:flex-start;">
+        <div>
+          <div class="eyebrow-dark" style="text-align:left;">TAILORED TO YOUR SPEC</div>
+          <h2 class="pd-title">Custom Manufacturing</h2>
+          <p style="color:var(--grey);font-size:14.5px;line-height:1.8;margin:14px 0 24px;">We offer custom
+            manufacturing of scientific glass equipment as per your requirements. Upload your drawing or specifications
+            and get a quote from our engineering team.</p>
+          <div class="form-card">
+            <div class="field"><label>Upload Drawing / File</label><input type="file"></div>
+            <div class="formgrid">
+              <div class="field"><label>Product Name</label><input placeholder="e.g. Custom Reflux Condenser"></div>
+              <div class="field"><label>Material</label>
+                <select>
+                  <option>Borosilicate Glass 3.3</option>
+                  <option>Quartz Glass</option>
+                  <option>PTFE Lined</option>
+                </select>
+              </div>
+              <div class="field"><label>Dimensions</label><input placeholder="L x W x H / capacity"></div>
+              <div class="field"><label>Tolerance</label><input placeholder="e.g. ±0.5mm"></div>
+              <div class="field"><label>Quantity Required</label><input type="number" placeholder="e.g. 500"></div>
+              <div class="field"><label>Expected Delivery Date</label><input type="date"></div>
+            </div>
+            <div class="field"><label>Additional Requirements</label><textarea rows="3"
+                placeholder="Any special notes"></textarea></div>
+            <a class="btn btn-primary btn-block" onclick="submitCustom()">SUBMIT REQUEST →</a>
+          </div>
+        </div>
+        <div class="pd-imgbox" style="height:520px;">
+          <svg viewBox="0 0 100 100"
+            style="width:200px;height:200px;stroke:var(--violet);fill:none;stroke-width:1.6;animation:float 5s ease-in-out infinite;">
+            <path d="M40 5h20M45 5v25l-20 45a8 8 0 0 0 7 12h36a8 8 0 0 0 7-12l-20-45V5" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- BLOG PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-blog">
+    <div class="wrap" style="padding:60px 0 80px;">
+      <div class="section-head">
+        <div class="eyebrow-dark">OUR LATEST</div>
+        <h2>Blog &amp; Insights</h2>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img
+            src="https://2.wlimg.com/product_images/bc-full/2021/1/3209456/round-bottom-flask-cornsil-1610005059-5679971.jpeg">
+          <div class="body">
+            <div class="date">May 20, 2026</div>
+            <h4>Guide to Choosing the Right Laboratory Glassware</h4>
+            <p>Key factors to consider before ordering glassware for your lab, from wall thickness to joint standards.
+            </p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img
+            src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-water-estimation-apparatus-1560325229-4947761.jpeg">
+          <div class="body">
+            <div class="date">May 15, 2026</div>
+            <h4>Importance of Borosilicate Glass in Laboratories</h4>
+            <p>Why thermal shock resistance and chemical inertness make borosilicate the lab standard.</p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://2.wlimg.com/product_images/bc-full/dir_107/3209456/heating-mantles-1333785.jpg">
+          <div class="body">
+            <div class="date">Apr 28, 2026</div>
+            <h4>Maintenance Tips for Laboratory Glassware</h4>
+            <p>Simple habits that extend the working life of your glass apparatus and reduce breakage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow-dark" style="text-align:left;">GET IN TOUCH</div>
+        <h2 class="pd-title">Contact Us</h2>
+        <div class="cinfo-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+            <path d="M3 5a2 2 0 0 1 2-2h3l2 5-2 1a11 11 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z" />
+          </svg>
+          <div><b>Phone</b><span>+91 94440 20250</span></div>
+        </div>
+        <div class="cinfo-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+          <div><b>Email</b><span>info@sabariscientific.com</span></div>
+        </div>
+        <div class="cinfo-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+            <path d="M9 2h6M10 2v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V2" />
+          </svg>
+          <div><b>Address</b><span>No. 18, 2nd Main Road, Annamalai Nagar Extension, Nonankuppam, Ariyankuppam,
+              Pondicherry, India – 605007</span></div>
+        </div>
+        <div class="cinfo-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" />
+          </svg>
+          <div><b>Business Hours</b><span>Mon – Sat, 9:00 AM – 6:30 PM IST</span></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h4 style="margin-bottom:16px;">Send Us a Message</h4>
+        <div class="formgrid">
+          <div class="field"><label>Full Name</label><input placeholder="Your name"></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="field"><label>Subject</label><input placeholder="How can we help?"></div>
+        <div class="field"><label>Message</label><textarea rows="5" placeholder="Write your message…"></textarea></div>
+        <a class="btn btn-primary btn-block" onclick="submitContact()">SEND MESSAGE →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ACCOUNT / DASHBOARD PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-account">
+    <div class="wrap acc-layout">
+      <aside>
+        <ul class="acc-side">
+          <li class="active">Dashboard</li>
+          <li onclick="toast('Showing your orders')">My Orders</li>
+          <li onclick="toast('Your saved quotes')">My Quotes</li>
+          <li onclick="toast('Your wishlist')">Wishlist</li>
+          <li onclick="toast('Saved addresses')">Addresses</li>
+          <li onclick="toast('Account settings')">Account Settings</li>
+          <li onclick="toast('Downloads')">Downloads</li>
+          <li onclick="toast('Signed out')">Log Out</li>
+        </ul>
+      </aside>
+      <div>
+        <h2 style="font-family:Georgia,serif;font-size:24px;color:var(--ink1);margin-bottom:20px;">My Dashboard</h2>
+        <div class="acc-cards">
+          <div class="acc-card"><b id="accOrders">10</b><span>Total Orders</span></div>
+          <div class="acc-card"><b id="accQuotes">3</b><span>Quotes</span></div>
+          <div class="acc-card"><b>5</b><span>Wishlist</span></div>
+          <div class="acc-card"><b>2</b><span>Addresses</span></div>
+        </div>
+        <h4 style="margin-bottom:12px;color:var(--ink1);">Recent Orders</h4>
+        <table class="orders">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="accOrdersTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TRACK ORDER PAGE -->
+  <!-- ============================================================ -->
+  <section class="page" id="page-track">
+    <div class="track-box">
+      <div class="section-head">
+        <div class="eyebrow-dark">ORDER STATUS</div>
+        <h2>Track Your Order</h2>
+      </div>
+      <div class="track-input">
+        <input id="trackInput" placeholder="Enter your Order ID (e.g. 10825)">
+        <a class="btn btn-primary" onclick="trackOrder()">TRACK ORDER →</a>
+      </div>
+      <div id="trackResult" style="display:none;">
+        <div class="form-card">
+          <div class="formgrid">
+            <div><b style="display:block;color:var(--grey);font-size:12px;">Order ID</b><span id="trOrderId"
+                style="font-weight:700;"></span></div>
+            <div><b style="display:block;color:var(--grey);font-size:12px;">Order Date</b><span id="trOrderDate"
+                style="font-weight:700;"></span></div>
+          </div>
+          <div class="timeline" id="trTimeline"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer>
+    <div class="wrap foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="flame" style="width:42px;height:42px;font-size:7.5px;">CORNSIL</div>
+          <div class="brand-text">
+            <div class="name" style="font-size:17px;">Sabari Scientific</div>
+            <div class="sub" style="font-size:11.5px;color:#fff;">GLASS EQUIPMENTS</div>
+          </div>
+        </div>
+        <p style="color:#8b84ab;line-height:1.7;">ISO 9001:2015 certified manufacturer, exporter &amp; supplier of
+          CORNSIL® borosilicate laboratory glassware, based in Pondicherry, India since 1995.</p>
+        <div class="foot-social"><a href="#">f</a><a href="#">in</a><a href="#">◎</a></div>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('custom')">Custom Manufacturing</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Account</h5>
+        <ul>
+          <li><a onclick="showPage('account')">My Dashboard</a></li>
+          <li><a onclick="showPage('cart')">My Cart</a></li>
+          <li><a onclick="showPage('track')">Track Order</a></li>
+          <li><a onclick="showPage('blog')">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <ul>
+          <li>No. 18, 2nd Main Road, Annamalai Nagar Extension, Ariyankuppam, Pondicherry – 605007</li>
+          <li><a href="tel:+919444020250">+91 94440 20250</a></li>
+          <li><a href="mailto:info@sabariscientific.com">info@sabariscientific.com</a></li>
+          <li>GST: 34AGTPR5617H1ZX</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap bottombar">
+      <span>© 2026 Sabari Scientific Glass Equipments. All Rights Reserved.</span>
+      <span>Proprietor: Mr. Ramachandran R.</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ================= ICONS ================= */
+    const ICONS = {
+      funnel: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>',
+      beaker: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M7 3h10M8 3v6l-4.5 8a2 2 0 0 0 1.8 3h13.4a2 2 0 0 0 1.8-3L16 9V3"/><path d="M8 15h8"/></svg>',
+      flask: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 2h6M10 2v6L4 20a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 8V2"/></svg>',
+      condenser: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 2v20M15 2v20M9 6h6M9 12h6M9 18h6"/></svg>',
+      cylinder: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="9" y="2" width="6" height="16" rx="1"/><path d="M12 18v4M9 22h6"/></svg>',
+      burette: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M10 2h4v14l-2 6-2-6V2z"/><path d="M9 6h6M9 10h6"/></svg>',
+      reactor: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2v6M8 22h8l-1-6H9l-1 6zM7 12h10l1 4H6l1-4z"/></svg>',
+      assembly: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>'
+    };
+    const CAT_LIST = [
+      { key: 'funnel', label: 'Separating Funnels' },
+      { key: 'beaker', label: 'Beakers' },
+      { key: 'flask', label: 'Flasks' },
+      { key: 'burette', label: 'Burettes' },
+      { key: 'condenser', label: 'Condensers' },
+      { key: 'reactor', label: 'Reactors' },
+      { key: 'assembly', label: 'Glass Assemblies' },
+      { key: 'cylinder', label: 'Measuring Cylinders' }
+    ];
+
+    /* ================= PRODUCT DATA ================= */
+    let PRODUCTS = [];
+
+    /* ================= STATE ================= */
+    let cart = []; // {id, qty, cap}
+    let currentProduct = null;
+    let currentCap = null;
+    let currentQty = 1;
+    let activeCat = 'all';
+    let orderCounter = 10826;
+
+    /* ================= HELPERS ================= */
+    function money(n) { return '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+    }
+    function findProduct(id) { return PRODUCTS.find(p => p.id === id); }
+
+    /* ================= NAVIGATION ================= */
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      document.querySelectorAll('#mainnav a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (name === 'cart') renderCart();
+      if (name === 'account') renderAccount();
+    }
+
+    /* ================= RENDER: category strips ================= */
+    function renderCatStrip() {
+      const html = CAT_LIST.map(c => `
+    <a class="catitem ${c.key === activeCat ? 'active' : ''}" onclick="goCategory('${c.key}')">
+      ${ICONS[c.key]}
+      ${c.label}<div class="under"></div>
+    </a>`).join('') + `<a class="catitem" onclick="goCategory('all')">${ICONS.assembly}View All</a>`;
+      document.getElementById('catStripHome').innerHTML = html;
+    }
+    function goCategory(key) { activeCat = key; showPage('products'); renderCatFilterList(); filterProducts(); renderCatStrip(); }
+
+    /* ================= RENDER: product card ================= */
+    function productCard(p) {
+      return `
+    <div class="prod-card" onclick="openProduct(${p.id})">
+      <div class="imgwrap">${ICONS[p.cat]}</div>
+      <div class="body">
+        <div class="stars">★★★★★</div>
+        <h4>${p.name}</h4>
+        <p class="meta">${p.meta}</p>
+        <div class="price">${money(p.price)}</div>
+        <a class="btn btn-primary btn-sm btn-block" onclick="event.stopPropagation(); quickAdd(${p.id})">ADD TO CART</a>
+      </div>
+    </div>`;
+    }
+    function renderHomeGrid() {
+      document.getElementById('homeProdGrid').innerHTML = PRODUCTS.slice(0, 4).map(productCard).join('');
+    }
+
+    /* ================= PRODUCTS PAGE ================= */
+    function renderCatFilterList() {
+      const html = ['<li class="' + (activeCat === 'all' ? 'active' : '') + '" onclick="goCategory(\'all\')">All Products</li>']
+        .concat(CAT_LIST.map(c => `<li class="${c.key === activeCat ? 'active' : ''}" onclick="goCategory('${c.key}')">${c.label}</li>`)).join('');
+      document.getElementById('catFilterList').innerHTML = html;
+    }
+    function filterProducts() {
+      const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+      const maxPrice = Number(document.getElementById('priceRange')?.value || 2000);
+      document.getElementById('priceMax').textContent = '₹' + maxPrice;
+      let list = PRODUCTS.filter(p =>
+        (activeCat === 'all' || p.cat === activeCat) &&
+        p.price <= maxPrice &&
+        p.name.toLowerCase().includes(q)
+      );
+      document.getElementById('resultCount').textContent = `Showing 1–${list.length} of ${list.length} results`;
+      document.getElementById('productsGrid').innerHTML = list.map(productCard).join('') || '<p style="color:var(--grey);">No products match your filters.</p>';
+    }
+
+    /* ================= PRODUCT DETAIL ================= */
+    function openProduct(id) {
+      currentProduct = findProduct(id);
+      currentCap = currentProduct.caps[0];
+      currentQty = 1;
+      document.getElementById('pdCrumb').textContent = currentProduct.name;
+      document.getElementById('pdTitle').textContent = currentProduct.name;
+      document.getElementById('pdPrice').textContent = money(currentProduct.price);
+      document.getElementById('pdMeta').textContent = currentProduct.meta + ' · Borosilicate 3.3 Glass · Brand: CORNSIL®';
+      document.getElementById('pdIcon').innerHTML = ICONS[currentProduct.cat];
+      document.getElementById('pdQty').textContent = 1;
+      document.getElementById('pdCaps').innerHTML = currentProduct.caps.map(c =>
+        `<span class="capchip ${c === currentCap ? 'active' : ''}" onclick="setCap('${c}', this)">${c}</span>`).join('');
+      document.getElementById('pdDesc').innerHTML = `<p>${currentProduct.desc}</p><ul>
+    <li>Chemical resistant borosilicate 3.3 glass</li>
+    <li>High durability &amp; thermal shock resistance</li>
+    <li>Precision stopcock / joint fitting</li>
+    <li>Easy to clean and autoclavable</li>
+  </ul>`;
+      showPage('detail');
+    }
+    function setCap(cap, el) {
+      currentCap = cap;
+      document.querySelectorAll('#pdCaps .capchip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function pdQty(delta) {
+      currentQty = Math.max(1, currentQty + delta);
+      document.getElementById('pdQty').textContent = currentQty;
+    }
+    function addToCartFromDetail() {
+      addToCart(currentProduct.id, currentQty, currentCap);
+      toast(currentProduct.name + ' added to cart');
+    }
+    function quickAdd(id) {
+      const p = findProduct(id);
+      addToCart(id, 1, p.caps[0]);
+      toast(p.name + ' added to cart');
+    }
+    function addToCart(id, qty, cap) {
+      const existing = cart.find(c => c.id === id && c.cap === cap);
+      if (existing) { existing.qty += qty; }
+      else { cart.push({ id, qty, cap }); }
+      updateCartBadge();
+    }
+
+    /* ================= CART ================= */
+    function updateCartBadge() {
+      const count = cart.reduce((s, c) => s + c.qty, 0);
+      document.getElementById('cartBadge').textContent = count;
+    }
+    function cartTotals() {
+      let subtotal = 0;
+      cart.forEach(c => { subtotal += findProduct(c.id).price * c.qty; });
+      const gst = subtotal * 0.18;
+      const shipping = cart.length ? 150 : 0;
+      const total = subtotal + gst + shipping;
+      return { subtotal, gst, shipping, total };
+    }
+    function renderCart() {
+      const rowsEl = document.getElementById('cartRows');
+      const emptyEl = document.getElementById('cartEmpty');
+      if (!cart.length) {
+        rowsEl.innerHTML = '';
+        emptyEl.style.display = 'block';
+      } else {
+        emptyEl.style.display = 'none';
+        rowsEl.innerHTML = cart.map((c, i) => {
+          const p = findProduct(c.id);
+          return `
+      <div class="cart-row">
+        <div class="thumb">${ICONS[p.cat]}</div>
+        <div>
+          <h5>${p.name}</h5>
+          <div class="sub">${c.cap}</div>
+        </div>
+        <div class="qtybox">
+          <button onclick="cartQty(${i},-1)">−</button><span>${c.qty}</span><button onclick="cartQty(${i},1)">+</button>
+        </div>
+        <div class="price">${money(p.price * c.qty)}</div>
+        <a onclick="removeFromCart(${i})" style="color:#ef4444;font-size:12px;font-weight:700;">Remove</a>
+      </div>`;
+        }).join('');
+      }
+      const t = cartTotals();
+      document.getElementById('sumSubtotal').textContent = money(t.subtotal);
+      document.getElementById('sumGst').textContent = money(t.gst);
+      document.getElementById('sumTotal').textContent = money(t.total);
+    }
+    function cartQty(i, delta) {
+      cart[i].qty = Math.max(1, cart[i].qty + delta);
+      renderCart(); updateCartBadge();
+    }
+    function removeFromCart(i) {
+      cart.splice(i, 1);
+      renderCart(); updateCartBadge();
+    }
+
+    /* ================= CHECKOUT ================= */
+    function renderCheckout() {
+      const rowsEl = document.getElementById('coCartRows');
+      rowsEl.innerHTML = cart.map(c => {
+        const p = findProduct(c.id);
+        return `<div class="sumrow"><span>${p.name} (${c.cap}) x${c.qty}</span><span>${money(p.price * c.qty)}</span></div>`;
+      }).join('');
+      const t = cartTotals();
+      document.getElementById('coSubtotal').textContent = money(t.subtotal);
+      document.getElementById('coGst').textContent = money(t.gst);
+      document.getElementById('coTotal').textContent = money(t.total);
+    }
+    async function placeOrder() {
+      if (!cart.length) { toast('Your cart is empty'); showPage('products'); return; }
+      
+      const userInfo = {
+        name: document.getElementById('chkName').value || 'Guest',
+        email: document.getElementById('chkEmail').value || '',
+        address: document.getElementById('chkAddr').value || ''
+      };
+
+      try {
+        const res = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cart: cart, userInfo: userInfo })
+        });
+        const data = await res.json();
+        
+        if (data.success) {
+          cart = [];
+          updateCartBadge();
+          toast('Order #' + data.order_id + ' placed successfully!');
+          document.getElementById('trackInput').value = data.order_id;
+          showPage('track');
+          trackOrder();
+        } else {
+          toast('Checkout failed.');
+        }
+      } catch (err) {
+        toast('Error connecting to server.');
+      }
+    }
+
+    /* ================= ACCOUNT ================= */
+    const SAMPLE_ORDERS = [
+      { id: 10825, date: 'May 22, 2026', total: 2926.40, status: 'completed' },
+      { id: 10824, date: 'May 15, 2026', total: 1450.00, status: 'shipped' },
+      { id: 10823, date: 'May 10, 2026', total: 850.00, status: 'processing' }
+    ];
+    function renderAccount() {
+      document.getElementById('accOrdersTable').innerHTML = SAMPLE_ORDERS.map(o => `
+    <tr><td>#${o.id}</td><td>${o.date}</td><td>${money(o.total)}</td>
+    <td><span class="status-pill ${o.status}">${o.status[0].toUpperCase() + o.status.slice(1)}</span></td></tr>`).join('');
+    }
+
+    /* ================= TRACK ORDER ================= */
+    async function trackOrder() {
+      const id = document.getElementById('trackInput').value.trim();
+      if (!id) { toast('Enter an order ID to track'); return; }
+      
+      try {
+        const res = await fetch('/api/track_order/' + id);
+        if (!res.ok) {
+           toast('Order not found!');
+           document.getElementById('trackResult').style.display = 'none';
+           return;
+        }
+        const data = await res.json();
+        
+        document.getElementById('trackResult').style.display = 'block';
+        document.getElementById('trOrderId').textContent = '#' + data.order_id;
+        document.getElementById('trOrderDate').textContent = new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+        
+        const steps = [
+          { label: 'Order Placed', done: true },
+          { label: 'Confirmed', done: (data.status !== 'Processing') },
+          { label: 'Packed', done: (data.status === 'Packed' || data.status === 'Shipped' || data.status === 'Delivered') },
+          { label: 'Shipped', done: (data.status === 'Shipped' || data.status === 'Delivered') },
+          { label: 'Out for Delivery', done: false },
+          { label: 'Delivered', done: (data.status === 'Delivered') }
+        ];
+        document.getElementById('trTimeline').innerHTML = steps.map((s, i) => `
+      <div class="tstep ${s.done ? 'done' : ''}"><div class="circ">${s.done ? '✓' : i + 1}</div><p>${s.label}</p></div>
+    `).join('');
+      } catch (err) {
+        toast('Error fetching tracking data.');
+      }
+    }
+
+    /* ================= FORMS ================= */
+    async function submitContact() {
+      const data = {
+        name: document.getElementById('cntName').value,
+        email: document.getElementById('cntEmail').value,
+        message: document.getElementById('cntMsg').value
+      };
+      await fetch('/api/contact', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+      toast('Message sent! We will get back to you shortly.');
+    }
+    
+    async function submitCustom() {
+      const data = {
+        name: document.getElementById('cstName').value,
+        email: document.getElementById('cstEmail').value,
+        details: document.getElementById('cstDetails').value
+      };
+      await fetch('/api/custom', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+      toast('Custom manufacturing request submitted!');
+    }
+
+    /* ================= INIT ================= */
+    async function initApp() {
+      try {
+        const res = await fetch('/api/products');
+        PRODUCTS = await res.json();
+      } catch (e) {
+        console.error("Failed to fetch products");
+      }
+      renderCatStrip();
+      renderHomeGrid();
+      renderCatFilterList();
+      filterProducts();
+      updateCartBadge();
+    }
+    initApp();
+  </script>
+</body>
+
+</html>
