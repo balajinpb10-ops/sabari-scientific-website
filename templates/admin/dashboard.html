@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - CORNSIL</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #F8FAFC; margin: 0; color: #1E293B; display: flex; height: 100vh; }
+    .sidebar { width: 250px; background: #1E293B; color: #F8FAFC; padding: 20px; box-sizing: border-box; }
+    .sidebar h2 { margin-top: 0; color: #38BDF8; font-size: 20px; margin-bottom: 30px; }
+    .sidebar a { display: block; color: #CBD5E1; text-decoration: none; padding: 12px 0; border-bottom: 1px solid #334155; }
+    .sidebar a:hover { color: #fff; }
+    .main { flex: 1; padding: 40px; overflow-y: auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .header h1 { margin: 0; }
+    .btn-logout { background: #EF4444; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .stat-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .stat-card h3 { margin: 0 0 10px 0; font-size: 14px; color: #64748B; text-transform: uppercase; }
+    .stat-card .num { font-size: 32px; font-weight: bold; color: #2563EB; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>CORNSIL Admin</h2>
+  <a href="#">Dashboard Overview</a>
+  <a href="#">Products (Phase 2)</a>
+  <a href="#">Categories (Phase 2)</a>
+  <a href="#">Orders (Phase 3)</a>
+  <a href="#">Customers (Phase 3)</a>
+</div>
+
+<div class="main">
+  <div class="header">
+    <h1>Dashboard Overview</h1>
+    <div>
+      <span style="margin-right:20px;">Welcome, {{ current_user.username }} ({{ current_user.role }})</span>
+      <a href="{{ url_for('admin_logout') }}" class="btn-logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Products</h3>
+      <div class="num">{{ total_products }}</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Orders</h3>
+      <div class="num">{{ total_orders }}</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Customers</h3>
+      <div class="num">{{ total_customers }}</div>
+    </div>
+    <div class="stat-card">
+      <h3>Pending Quotes</h3>
+      <div class="num">0</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
