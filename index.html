@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabari Scientific Glass Equipments — CORNSIL® Laboratory Glassware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A1613;
+    --bg-alt:#0E1F1A;
+    --panel:rgba(255,255,255,0.045);
+    --panel-solid:#10251F;
+    --line:rgba(255,255,255,0.09);
+    --ink:#EAF4F1;
+    --ink-muted:#93A9A2;
+    --cyan:#3CE7CB;
+    --cyan-deep:#17A88F;
+    --amber:#F0A83A;
+    --amber-soft:#3A2C10;
+    --radius:16px;
+    --shadow:0 20px 50px -20px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(60,231,203,.10), transparent 60%),
+      radial-gradient(900px 500px at -5% 20%, rgba(240,168,58,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    cursor:default;
+  }
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-0.02em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1220px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--cyan); color:#04211C;}
+
+  /* cursor glow */
+  #cursor-glow{
+    position:fixed; width:340px; height:340px; border-radius:50%; pointer-events:none; z-index:2;
+    background:radial-gradient(circle, rgba(60,231,203,.07), transparent 70%);
+    transform:translate(-50%,-50%); transition:opacity .3s; opacity:0;
+  }
+  @media (hover:hover){ #cursor-glow{opacity:1;} }
+
+  /* scroll progress */
+  #scroll-bar{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg,var(--cyan),var(--amber)); z-index:999; transition:width .1s linear;
+  }
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.08s;} .reveal-delay-2{transition-delay:.16s;}
+  .reveal-delay-3{transition-delay:.24s;} .reveal-delay-4{transition-delay:.32s;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    *{animation:none !important;}
+  }
+
+  /* glass panel base — the signature material */
+  .glass{
+    background:var(--panel);
+    border:1px solid var(--line);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-radius:var(--radius);
+  }
+
+  .tick-rule{
+    width:100%; height:20px;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px),
+                       repeating-linear-gradient(90deg, var(--cyan) 0 1.5px, transparent 1.5px 200px);
+    background-size: 40px 100%, 200px 100%;
+    opacity:.35;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,22,19,0.72);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    transition:padding .3s;
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; max-width:1220px; margin:0 auto; padding:16px 32px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px;}
+  .logo img{height:34px; width:auto;}
+  .logo .brandmark{color:var(--cyan); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; display:block; color:var(--ink-muted); font-weight:400;}
+  .nav-links{display:flex; gap:30px; font-size:14px; font-weight:500; color:var(--ink-muted);}
+  .nav-links a{position:relative; padding:4px 0; transition:color .25s;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0%; height:2px; background:var(--cyan); transition:width .3s cubic-bezier(.16,1,.3,1);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex; align-items:center; gap:12px;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:999px; font-weight:600; font-size:13.5px; border:1px solid transparent; cursor:pointer; transition:transform .25s, box-shadow .25s, background .25s; white-space:nowrap;}
+  .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan-deep)); color:#04211C; box-shadow:0 8px 22px -8px rgba(60,231,203,.5);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(60,231,203,.6);}
+  .btn-ghost{border-color:var(--line); color:var(--ink); background:rgba(255,255,255,.03);}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-2px);}
+  .btn-sm{padding:8px 16px; font-size:12.5px;}
+  .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{width:22px; height:2px; background:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; padding:80px 0 56px; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); background:rgba(60,231,203,.08); border:1px solid rgba(60,231,203,.25); padding:7px 14px; border-radius:999px; margin-bottom:22px;}
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--amber); animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.4; transform:scale(1.5);}}
+  .hero h1{font-size:clamp(34px, 4.6vw, 54px); line-height:1.06; margin-bottom:20px;}
+  .hero h1 em{font-style:normal; background:linear-gradient(90deg,var(--cyan),#8CF3E1); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p{font-size:16.5px; color:var(--ink-muted); max-width:480px; margin-bottom:30px; line-height:1.65;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;}
+  .hero-stats{display:flex; gap:34px; flex-wrap:wrap;}
+  .hstat b{font-family:'Space Grotesk',sans-serif; font-size:24px; display:block; color:var(--ink);}
+  .hstat span{font-size:11.5px; color:var(--ink-muted); font-family:'IBM Plex Mono',monospace; letter-spacing:.05em;}
+
+  .hero-visual{position:relative; display:flex; align-items:center; justify-content:center; height:460px;}
+  .glow{position:absolute; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(60,231,203,.14), transparent 70%); filter:blur(8px); animation:float 7s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0px);} 50%{transform:translateY(-18px);}}
+  .measure-badge{position:absolute; padding:12px 16px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; animation:float 6s ease-in-out infinite;}
+  .measure-badge.b1{top:4%; left:-6%; animation-delay:.4s;}
+  .measure-badge.b2{bottom:8%; right:-8%; animation-delay:1.2s;}
+  .measure-badge b{display:block; font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--cyan); margin-bottom:2px;}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.015);}
+  .trust-inner{display:flex; justify-content:space-between; padding:24px 0; flex-wrap:wrap; gap:18px;}
+  .trust-item{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-muted); font-weight:500;}
+  .trust-item b{color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .trust-item svg{flex-shrink:0; color:var(--cyan);}
+
+  section{padding:92px 0;}
+  .sec-head{max-width:640px; margin-bottom:52px;}
+  .sec-head .eyebrow{margin-bottom:16px;}
+  .sec-head h2{font-size:clamp(26px,3.2vw,38px); margin-bottom:14px;}
+  .sec-head p{color:var(--ink-muted); font-size:15.5px; line-height:1.65;}
+  .sec-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center;}
+  .about-card{padding:38px; position:relative; overflow:hidden;}
+  .about-card::before{content:'"'; position:absolute; top:-30px; left:20px; font-family:'Space Grotesk',sans-serif; font-size:180px; color:rgba(60,231,203,.06); line-height:1;}
+  .about-card p{color:var(--ink-muted); font-size:15px; line-height:1.75; margin-bottom:16px; position:relative;}
+  .about-founder{display:flex; align-items:center; gap:14px; margin-top:22px; padding-top:22px; border-top:1px solid var(--line); position:relative;}
+  .founder-badge{width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--cyan-deep)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:#04211C; font-size:18px;}
+  .about-founder b{display:block; font-size:14.5px;}
+  .about-founder span{font-size:12px; color:var(--ink-muted);}
+  .about-facts{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  .fact-card{padding:26px; transition:transform .3s, border-color .3s;}
+  .fact-card:hover{transform:translateY(-6px); border-color:rgba(60,231,203,.35);}
+  .fact-card svg{color:var(--amber); margin-bottom:14px;}
+  .fact-card b{display:block; font-family:'Space Grotesk',sans-serif; font-size:20px; margin-bottom:4px;}
+  .fact-card span{font-size:12.5px; color:var(--ink-muted); line-height:1.5; display:block;}
+
+  /* ---------- CATEGORY TABS ---------- */
+  .cat-tabs{display:flex; gap:10px; margin-bottom:40px; flex-wrap:wrap;}
+  .cat-tab{padding:10px 20px; border-radius:999px; border:1px solid var(--line); font-size:13.5px; font-weight:500; cursor:pointer; transition:all .25s; color:var(--ink-muted); background:rgba(255,255,255,.02);}
+  .cat-tab.active,.cat-tab:hover{background:var(--cyan); border-color:var(--cyan); color:#04211C;}
+  .chip-cloud{display:flex; flex-wrap:wrap; gap:10px;}
+  .subchip{padding:9px 16px; border-radius:10px; font-size:12.5px; color:var(--ink-muted); border:1px solid var(--line); background:rgba(255,255,255,.02); transition:all .25s; cursor:default;}
+  .subchip:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-2px);}
+
+  /* ---------- PRODUCTS ---------- */
+  .prod-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .prod-card{overflow:hidden; transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s; will-change:transform;}
+  .prod-card:hover{box-shadow:var(--shadow); border-color:rgba(60,231,203,.3);}
+  .prod-thumb{height:180px; background:linear-gradient(160deg,#0E241F,#122E27); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
+  .prod-thumb img{width:100%; height:100%; object-fit:contain; padding:14px; transition:transform .5s cubic-bezier(.16,1,.3,1);}
+  .prod-card:hover .prod-thumb img{transform:scale(1.08);}
+  .badge{position:absolute; top:12px; left:12px; background:var(--amber); color:#2a1c05; font-size:10px; font-weight:700; padding:5px 10px; border-radius:999px; letter-spacing:.03em; font-family:'IBM Plex Mono',monospace; z-index:2;}
+  .prod-body{padding:18px;}
+  .prod-cat{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--cyan); font-family:'IBM Plex Mono',monospace; margin-bottom:8px;}
+  .prod-body h4{font-size:14.5px; margin-bottom:12px; line-height:1.35; min-height:39px;}
+  .prod-meta-row{display:flex; align-items:center; justify-content:space-between;}
+  .stock-tag{font-size:11px; font-family:'IBM Plex Mono',monospace; padding:4px 9px; border-radius:6px;}
+  .stock-in{background:rgba(60,231,203,.12); color:var(--cyan);}
+  .enquire-btn{width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--cyan); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .3s;}
+  .enquire-btn:hover{background:var(--cyan); color:#04211C; transform:rotate(20deg);}
+
+  /* ---------- WHY / REASONS ---------- */
+  .why{background:var(--bg-alt); position:relative;}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .why-item{background:#0C1D18; padding:32px 24px; transition:background .3s;}
+  .why-item:hover{background:#0F2620;}
+  .why-item svg{color:var(--amber); margin-bottom:16px;}
+  .why-item h4{font-size:15px; margin-bottom:6px;}
+  .why-item p{font-size:12.5px; color:var(--ink-muted); line-height:1.55;}
+
+  /* ---------- CERTIFICATES marquee ---------- */
+  .cert-strip{overflow:hidden; position:relative; padding:0;}
+  .cert-strip::before,.cert-strip::after{content:''; position:absolute; top:0; bottom:0; width:90px; z-index:2; pointer-events:none;}
+  .cert-strip::before{left:0; background:linear-gradient(90deg,var(--bg),transparent);}
+  .cert-strip::after{right:0; background:linear-gradient(270deg,var(--bg),transparent);}
+  .cert-track{display:flex; gap:22px; width:max-content; animation:marquee 26s linear infinite;}
+  .cert-strip:hover .cert-track{animation-play-state:paused;}
+  @keyframes marquee{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .cert-card{width:190px; flex-shrink:0; padding:14px; text-align:center;}
+  .cert-card .cert-thumb{height:130px; border-radius:10px; overflow:hidden; margin-bottom:12px; background:#0E241F; border:1px solid var(--line);}
+  .cert-card img{width:100%; height:100%; object-fit:cover; filter:grayscale(.15) brightness(.95); transition:filter .3s;}
+  .cert-card:hover img{filter:none;}
+  .cert-card span{font-size:12.5px; font-weight:500; color:var(--ink-muted);}
+
+  /* ---------- STATS ---------- */
+  .stats-band{background:rgba(255,255,255,.02); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); text-align:center;}
+  .stat-cell{padding:52px 20px; border-right:1px solid var(--line);}
+  .stat-cell:last-child{border-right:none;}
+  .stat-num{font-family:'Space Grotesk',sans-serif; font-size:40px; color:var(--cyan); font-weight:700;}
+  .stat-label{font-size:12px; color:var(--ink-muted); margin-top:6px; letter-spacing:.03em; font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- INDUSTRIES ---------- */
+  .ind-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .ind-item{padding:24px 20px; transition:all .35s;}
+  .ind-item:hover{transform:translateY(-4px); border-color:rgba(240,168,58,.5); background:rgba(240,168,58,.04);}
+  .ind-item .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); opacity:.8;}
+  .ind-item h4{font-size:14.5px; margin-top:10px; font-weight:500; font-family:'Inter',sans-serif;}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:linear-gradient(120deg, var(--cyan-deep), #0C4E44); border-radius:24px; padding:60px 54px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap; color:#04211C;}
+  .cta-band::after{content:''; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%; background:rgba(240,168,58,.25);}
+  .cta-band h3{font-size:clamp(22px,2.8vw,32px); max-width:480px; position:relative; color:#04211C;}
+  .cta-band p{color:rgba(4,33,28,.72); margin-top:10px; max-width:440px; position:relative;}
+  .cta-actions{display:flex; gap:14px; position:relative; flex-wrap:wrap;}
+  .btn-dark{background:#04211C; color:#fff;}
+  .btn-dark:hover{transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(0,0,0,.4);}
+  .btn-outline-dark{border-color:rgba(4,33,28,.35); color:#04211C; background:transparent;}
+  .btn-outline-dark:hover{border-color:#04211C; background:rgba(4,33,28,.08);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .contact-card{padding:28px; display:flex; gap:16px; align-items:flex-start;}
+  .contact-icon{width:44px; height:44px; border-radius:12px; background:rgba(60,231,203,.1); color:var(--cyan); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .contact-card h4{font-size:14.5px; margin-bottom:6px;}
+  .contact-card p, .contact-card a{font-size:13.5px; color:var(--ink-muted); line-height:1.6;}
+  .contact-card a:hover{color:var(--cyan);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#071310; color:rgba(255,255,255,.6); padding:70px 0 28px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,.08);}
+  .foot-logo{color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; margin-bottom:14px; display:flex; gap:9px; align-items:center;}
+  footer p{font-size:13px; line-height:1.7;}
+  footer h5{color:#fff; font-size:12px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:18px; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:11px;}
+  footer li a{font-size:13.5px; transition:color .25s, padding-left .25s;}
+  footer li a:hover{color:var(--amber); padding-left:4px;}
+  .foot-social{display:flex; gap:10px; margin-top:18px;}
+  .foot-social a{width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; transition:all .25s;}
+  .foot-social a:hover{background:var(--cyan); border-color:var(--cyan); color:#04211C; transform:translateY(-3px);}
+  .foot-bottom{display:flex; justify-content:space-between; padding-top:24px; font-size:12px; flex-wrap:wrap; gap:12px;}
+
+  .to-top{position:fixed; bottom:26px; right:26px; width:46px; height:46px; border-radius:50%; background:var(--cyan); color:#04211C; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px -8px rgba(60,231,203,.55); opacity:0; pointer-events:none; transform:translateY(10px); transition:all .3s; z-index:200; border:none; cursor:pointer;}
+  .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+
+  .wa-float{position:fixed; bottom:26px; left:26px; width:50px; height:50px; border-radius:50%; background:#1FAE5B; display:flex; align-items:center; justify-content:center; z-index:200; box-shadow:0 10px 24px -8px rgba(31,174,91,.6); animation:pulse-wa 2.4s infinite;}
+  @keyframes pulse-wa{0%,100%{box-shadow:0 0 0 0 rgba(31,174,91,.45);} 50%{box-shadow:0 0 0 10px rgba(31,174,91,0);}}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;} .hero-visual{height:340px;}
+    .prod-grid,.why-grid,.ind-grid,.stats-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links{display:none;}
+    .menu-toggle{display:flex;}
+  }
+  @media (max-width:560px){
+    .prod-grid,.why-grid,.ind-grid,.stats-grid,.about-facts{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    .cta-band{padding:40px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+<div id="cursor-glow"></div>
+
+<!-- ================= NAV ================= -->
+<header>
+  <nav>
+    <div class="logo">
+      <img src="https://catalog.wlimg.com/1/3209456/other-images/12569-comp-image.png" alt="Sabari Scientific Glass Equipments" />
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#instruments">Instruments</a>
+      <a href="#glasswares">Glasswares</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost btn-sm">Enquiry Now</a>
+      <a href="https://api.whatsapp.com/send?phone=919486334647&text=Hello%21+I+found+your+website+and+am+interested+in+your+products." target="_blank" class="btn btn-primary btn-sm">WhatsApp Us</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal in"><span class="dot"></span> ISO 9001:2015 Certified · Est. 1995 · Pondicherry, India</div>
+      <h1 class="reveal in">Separating funnels, glassware &amp; <em>CORNSIL®</em> lab instruments — manufactured to spec.</h1>
+      <p class="reveal in reveal-delay-1">Sabari Scientific Glass Equipments is a Manufacturer, Exporter &amp; Supplier of borosilicate 3.3 laboratory glassware — sold worldwide under our registered brand, CORNSIL®.</p>
+      <div class="hero-actions reveal in reveal-delay-2">
+        <a href="#glasswares" class="btn btn-primary">Browse Catalogue</a>
+        <a href="#contact" class="btn btn-ghost">Get Instant Quote</a>
+      </div>
+      <div class="hero-stats reveal in reveal-delay-3">
+        <div class="hstat"><b class="counter" data-target="30">0</b><span>YEARS IN BUSINESS</span></div>
+        <div class="hstat"><b class="counter" data-target="80">0</b><span>PRODUCT LINES</span></div>
+        <div class="hstat"><b class="counter" data-target="10">0</b><span>SKILLED TEAM</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal in reveal-delay-2">
+      <div class="glow"></div>
+      <svg width="290" height="410" viewBox="0 0 300 420" fill="none" style="position:relative;">
+        <defs>
+          <clipPath id="flaskClip"><path d="M120 30H180V150L240 340C248 368 232 390 200 390H100C68 390 52 368 60 340L120 150V30Z"/></clipPath>
+          <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3CE7CB"/><stop offset="100%" stop-color="#0F5C50"/>
+          </linearGradient>
+        </defs>
+        <path d="M120 30H180V150L240 340C248 368 232 390 200 390H100C68 390 52 368 60 340L120 150V30Z" fill="rgba(255,255,255,.03)" stroke="#3CE7CB" stroke-width="2.5"/>
+        <g clip-path="url(#flaskClip)">
+          <rect x="40" y="240" width="220" height="200" fill="url(#liquidGrad)">
+            <animate attributeName="y" values="260;235;260" dur="4s" repeatCount="indefinite"/>
+          </rect>
+          <circle cx="140" cy="380" r="5" fill="#ffffff" opacity="0.5"><animate attributeName="cy" values="390;150" dur="3.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="3.2s" repeatCount="indefinite"/></circle>
+          <circle cx="175" cy="390" r="3.5" fill="#ffffff" opacity="0.4"><animate attributeName="cy" values="390;150" dur="2.6s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="2.6s" begin="0.6s" repeatCount="indefinite"/></circle>
+          <circle cx="110" cy="385" r="4" fill="#ffffff" opacity="0.45"><animate attributeName="cy" values="390;150" dur="3.6s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="3.6s" begin="1.2s" repeatCount="indefinite"/></circle>
+        </g>
+        <rect x="110" y="14" width="80" height="20" rx="4" fill="rgba(255,255,255,.04)" stroke="#3CE7CB" stroke-width="2.5"/>
+        <g stroke="#3CE7CB" stroke-width="1.4" opacity="0.5">
+          <line x1="72" y1="200" x2="90" y2="200"/><line x1="72" y1="260" x2="90" y2="260"/><line x1="72" y1="320" x2="90" y2="320"/>
+        </g>
+      </svg>
+      <div class="measure-badge glass b1">Brand<b>CORNSIL®</b></div>
+      <div class="measure-badge glass b2">Certified<b>ISO 9001:2015</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-inner">
+    <div class="trust-item reveal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <b>Manufacturer</b>&nbsp;· Exporter · Supplier</div>
+    <div class="trust-item reveal reveal-delay-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Borosilicate <b>3.3 Glass</b></div>
+    <div class="trust-item reveal reveal-delay-2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> GST <b class="mono">34AGTPR5617H1ZX</b></div>
+    <div class="trust-item reveal reveal-delay-3"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Proprietor <b>Mr. Ramachandran. R</b></div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About Us</div>
+      <h2 style="margin-bottom:20px;">Two decades of precision glasswork from Pondicherry</h2>
+      <div class="about-card glass">
+        <p>Positioned at Pondicherry, India, Sabari Scientific Glass Equipments was established in 1995. Under the guiding light of the Proprietor, Mr. Ramachandran. R, the company has gained immense recognition in the worldwide market.</p>
+        <p>We own a sound infrastructure in Pondicherry, installed with the latest machines — every piece of equipment is designed and developed under the supervision of industry experts, using approved-standard borosilicate 3.3 tubes.</p>
+        <div class="about-founder">
+          <div class="founder-badge">R</div>
+          <div><b>Mr. Ramachandran. R</b><span>Proprietor, Sabari Scientific Glass Equipments</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-facts reveal reveal-delay-1">
+      <div class="fact-card glass">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/></svg>
+        <b>1995</b><span>Year of establishment</span>
+      </div>
+      <div class="fact-card glass">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/><path d="M17 21v-2a4 4 0 00-3-3.87"/></svg>
+        <b>10</b><span>Skilled team members</span>
+      </div>
+      <div class="fact-card glass">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 8h-3V4H3v13h2M20 8l3 4v5h-3M20 8v9M9 20a2 2 0 100-4 2 2 0 000 4zM17 20a2 2 0 100-4 2 2 0 000 4z"/></svg>
+        <b>Global</b><span>Export &amp; supply network</span>
+      </div>
+      <div class="fact-card glass">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2h6M10 2v6l-5 11a2 2 0 002 3h10a2 2 0 002-3l-5-11V2"/></svg>
+        <b>CORNSIL®</b><span>Registered brand name</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tick-rule"></div>
+
+<!-- ================= WHY CHOOSE ================= -->
+<section class="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Reasons For Our Immense Preference</div>
+      <h2>Why clients keep coming back</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <h4>Ethical &amp; Transparent</h4>
+        <p>We follow ethical business policies and maintain transparency in every dealing.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/></svg>
+        <h4>Complex Assemblies</h4>
+        <p>Successfully executing special, complicated glass apparatus settings for universities and factories.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21h16M6 21V9h12v12M8 9V4h8v5"/></svg>
+        <h4>Built To Your Drawing</h4>
+        <p>We develop equipment as per the exact specifications and drawings our clients provide.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <h4>Institutional Trust</h4>
+        <p>Serving major institutions, industries and research organizations throughout India.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="glasswares">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Laboratory Equipments</div>
+      <h2>CORNSIL® instruments &amp; glasswares</h2>
+      <p>A sample of our catalogue — two core ranges, dozens of variants each, all in Borosilicate 3.3 glass.</p>
+    </div>
+
+    <div class="cat-tabs reveal">
+      <div class="cat-tab active" data-cat="all">All Products</div>
+      <div class="cat-tab" data-cat="instruments">Laboratory Instruments</div>
+      <div class="cat-tab" data-cat="glassware">Laboratory Glasswares</div>
+    </div>
+
+    <div class="prod-grid" id="prodGrid">
+      <div class="prod-card glass reveal" data-cat="instruments">
+        <div class="prod-thumb"><span class="badge">POPULAR</span><img src="https://2.wlimg.com/product_images/bc-full/2020/3/3209456/kjeldahl-distillation-unit-1583301401-4947755.jpeg" alt="CORNSIL Kjeldahl Distillation Unit" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Instrument</div>
+          <h4>CORNSIL® Kjeldahl Distillation Unit</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-1" data-cat="glassware">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2018/11/3209456/pycnometer-1542694604-4398619.jpg" alt="Pycnometer" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>Pycnometer — Density Bottle</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-2" data-cat="glassware">
+        <div class="prod-thumb"><span class="badge">1000ML</span><img src="https://2.wlimg.com/product_images/bc-full/2021/1/3209456/iodine-flask-cornsil-1610004177-5679925.jpg" alt="Iodine Flask CORNSIL" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>Iodine Flask CORNSIL®</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-3" data-cat="glassware">
+        <div class="prod-thumb"><span class="badge">5000ML</span><img src="https://2.wlimg.com/product_images/bc-full/2021/1/3209456/round-bottom-flask-cornsil-1610005059-5679971.jpeg" alt="Round Bottom Flask CORNSIL" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>Round Bottom Flask CORNSIL®</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal" data-cat="glassware">
+        <div class="prod-thumb"><span class="badge">NEW</span><img src="https://2.wlimg.com/product_images/bc-full/2023/2/3209456/cold-coffee-brew-maker-1677334578-6779054.jpeg" alt="Cold Coffee Brew Maker" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>Cold Coffee Brew Maker</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-1" data-cat="instruments">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/dir_107/3209456/schlenkline-setup-1333662.jpg" alt="CORNSIL Schlenk Line Setup" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Instrument</div>
+          <h4>CORNSIL® Schlenk Line Setup</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-2" data-cat="glassware">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-dropping-bottle-1560324737-4947713.jpeg" alt="CORNSIL Laboratory Dropping Bottle" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>CORNSIL® Laboratory Dropping Bottle</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-3" data-cat="instruments">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/dir_107/3209456/heating-mantles-1333785.jpg" alt="CORNSIL Heating Mantles" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Instrument</div>
+          <h4>CORNSIL® Heating Mantles</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal" data-cat="glassware">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-weighing-bottle-1560324719-4947710.jpeg" alt="CORNSIL Laboratory Weighing Bottle" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>CORNSIL® Laboratory Weighing Bottle</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-1" data-cat="glassware">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-measuring-cylinder-1560325207-4947758.jpeg" alt="Cornsil Laboratory Measuring Cylinder" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>Cornsil Laboratory Measuring Cylinder</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-2" data-cat="instruments">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-water-estimation-apparatus-1560325229-4947761.jpeg" alt="Cornsil Water Estimation Apparatus" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Instrument</div>
+          <h4>Water Estimation Apparatus (Dean &amp; Stark)</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card glass reveal reveal-delay-3" data-cat="glassware">
+        <div class="prod-thumb"><img src="https://2.wlimg.com/product_images/bc-full/2019/6/3209456/laboratory-imhoff-cone-1560325095-4947743.jpeg" alt="CORNSIL Laboratory Imhoff Cone" loading="lazy"/></div>
+        <div class="prod-body">
+          <div class="prod-cat">Laboratory Glassware</div>
+          <h4>CORNSIL® Laboratory Imhoff Cone</h4>
+          <div class="prod-meta-row"><span class="stock-tag stock-in">IN STOCK</span><button class="enquire-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:44px;" class="reveal">
+      <a href="#contact" class="btn btn-ghost">Request Full Catalogue</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORY BROWSE (real sub-categories) ================= -->
+<section id="instruments" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Browse The Full Range</div>
+      <h2>Every category in our catalogue</h2>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h4 style="font-size:14px; color:var(--cyan); margin-bottom:14px; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em;">CORNSIL® LABORATORY INSTRUMENTS</h4>
+      <div class="chip-cloud reveal">
+        <div class="subchip">Soxhlet Apparatus with Heating Mantle</div>
+        <div class="subchip">Water Estimation Apparatus (Dean &amp; Stark)</div>
+        <div class="subchip">Kjeldahl Distillation Apparatus</div>
+        <div class="subchip">Particle Size Determination Apparatus</div>
+        <div class="subchip">Arsenic Determination Apparatus</div>
+        <div class="subchip">Parnas and Wagner Apparatus</div>
+        <div class="subchip">Carbon Sulphur Determination Apparatus</div>
+        <div class="subchip">Jar Test Apparatus</div>
+        <div class="subchip">Heating Mantles</div>
+        <div class="subchip">Kjeldahl Digestion Unit</div>
+        <div class="subchip">Kjeldahl Distillation Unit</div>
+        <div class="subchip">Water Still Distillation Unit</div>
+        <div class="subchip">Laboratory Tools</div>
+        <div class="subchip">Rotary Evaporator</div>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-size:14px; color:var(--cyan); margin-bottom:14px; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em;">CORNSIL® LABORATORY GLASSWARES</h4>
+      <div class="chip-cloud reveal reveal-delay-1">
+        <div class="subchip">Separating Funnels</div>
+        <div class="subchip">Round Bottom Flask</div>
+        <div class="subchip">Conical Flask</div>
+        <div class="subchip">Glass Beakers</div>
+        <div class="subchip">Volumetric Flask</div>
+        <div class="subchip">Laboratory Burettes</div>
+        <div class="subchip">Laboratory Pipettes</div>
+        <div class="subchip">Laboratory Funnels</div>
+        <div class="subchip">Glass Condensers — Allihn / Liebig / Graham</div>
+        <div class="subchip">Fractionating Column, Vigreux</div>
+        <div class="subchip">Glass Desiccators</div>
+        <div class="subchip">Glass Crucibles</div>
+        <div class="subchip">Schlenk Flask</div>
+        <div class="subchip">Vacuum Pin Tube</div>
+        <div class="subchip">Reagent Bottles</div>
+        <div class="subchip">Weighing Bottle</div>
+        <div class="subchip">Imhoff Cone</div>
+        <div class="subchip">Pycnometer</div>
+        <div class="subchip">Nessler Cylinder</div>
+        <div class="subchip">Short Path Distillation</div>
+        <div class="subchip">Schlenkline Manifold &amp; Accessories</div>
+        <div class="subchip">Receiver Adapters</div>
+        <div class="subchip">3-Neck Glass Flask</div>
+        <div class="subchip">Measuring Cylinder</div>
+        <div class="subchip">Gas Washing Bottle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats-band">
+  <div class="wrap stats-grid">
+    <div class="stat-cell reveal"><div class="stat-num counter" data-target="1995" data-raw="true">0</div><div class="stat-label">ESTABLISHED</div></div>
+    <div class="stat-cell reveal reveal-delay-1"><div class="stat-num counter" data-target="80">0</div><div class="stat-label">PRODUCT LINES</div></div>
+    <div class="stat-cell reveal reveal-delay-2"><div class="stat-num counter" data-target="10">0</div><div class="stat-label">TEAM MEMBERS</div></div>
+    <div class="stat-cell reveal reveal-delay-3"><div class="stat-num counter" data-target="7">0</div><div class="stat-label">CERTIFICATIONS HELD</div></div>
+  </div>
+</div>
+
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Certifications</div>
+      <h2>Verified &amp; compliant</h2>
+      <p>Every claim we make is backed by paperwork — hover to pause and inspect.</p>
+    </div>
+  </div>
+  <div class="cert-strip">
+    <div class="cert-track">
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/brand-certificate-2537912.jpg" alt="Brand Certificate" loading="lazy"/></div><span>Brand Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/export-certificate-2537916.jpg" alt="Export Certificate" loading="lazy"/></div><span>Export Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/iso-certificate-2537925.jpg" alt="ISO Certificate" loading="lazy"/></div><span>ISO 9001:2015</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/ssi-certificate-2537933.jpg" alt="SSI Certificate" loading="lazy"/></div><span>SSI Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/registration-certificate-2537987.jpg" alt="Registration Certificate" loading="lazy"/></div><span>Registration Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/gem-certificate-2679267.jpg" alt="GEM Certificate" loading="lazy"/></div><span>GEM Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/udyam-registration-certificate-3148801.jpg" alt="Udyam Registration Certificate" loading="lazy"/></div><span>Udyam Registration</span></div>
+      <!-- duplicate set for seamless marquee -->
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/brand-certificate-2537912.jpg" alt="Brand Certificate" loading="lazy"/></div><span>Brand Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/export-certificate-2537916.jpg" alt="Export Certificate" loading="lazy"/></div><span>Export Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/iso-certificate-2537925.jpg" alt="ISO Certificate" loading="lazy"/></div><span>ISO 9001:2015</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/ssi-certificate-2537933.jpg" alt="SSI Certificate" loading="lazy"/></div><span>SSI Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/registration-certificate-2537987.jpg" alt="Registration Certificate" loading="lazy"/></div><span>Registration Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/gem-certificate-2679267.jpg" alt="GEM Certificate" loading="lazy"/></div><span>GEM Certificate</span></div>
+      <div class="cert-card glass"><div class="cert-thumb"><img src="https://catalog.wlimg.com/1/3209456/small-images/udyam-registration-certificate-3148801.jpg" alt="Udyam Registration Certificate" loading="lazy"/></div><span>Udyam Registration</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INDUSTRIES ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Where We Serve</div>
+      <h2>Industries running on CORNSIL® glassware</h2>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-item glass reveal"><span class="num">01</span><h4>Universities</h4></div>
+      <div class="ind-item glass reveal reveal-delay-1"><span class="num">02</span><h4>Research Institutions</h4></div>
+      <div class="ind-item glass reveal reveal-delay-2"><span class="num">03</span><h4>Chemical Factories</h4></div>
+      <div class="ind-item glass reveal reveal-delay-3"><span class="num">04</span><h4>Pharmaceutical Labs</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <h3>Need equipment built to your own drawing?</h3>
+        <p>Send your specification or sketch — our Pondicherry workshop develops apparatus to exact client-provided drawings, just as we have for universities and factories across India.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#contact" class="btn btn-dark">Send Enquiry</a>
+        <a href="https://api.whatsapp.com/send?phone=919486334647" target="_blank" class="btn btn-outline-dark">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">How To Find Us</div>
+      <h2>Contact Sabari Scientific</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card glass reveal">
+        <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h4>Registered Address</h4><p>No. 18, 2nd Main Road, Annamalai Nagar Extension, Nonankuppam, Ariyankuppam, Pondicherry – 605007, India</p></div>
+      </div>
+      <div class="contact-card glass reveal reveal-delay-1">
+        <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><h4>Call / WhatsApp</h4><p><a href="https://api.whatsapp.com/send?phone=919486334647" target="_blank">+91 94863 34647</a> — ask for Mr. Ramachandran. R</p></div>
+      </div>
+      <div class="contact-card glass reveal reveal-delay-2">
+        <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M8 4v4M16 4v4"/></svg></div>
+        <div><h4>Business Details</h4><p>Manufacturer, Exporter, Supplier &amp; Service Provider · Established 1995 · GST 34AGTPR5617H1ZX</p></div>
+      </div>
+      <div class="contact-card glass reveal reveal-delay-3">
+        <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
+        <div><h4>Enquiry Desk</h4><p>Send your product list or custom drawing — replies typically go out within one business day.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <img src="https://catalog.wlimg.com/1/3209456/other-images/12569-comp-image.png" alt="Sabari Scientific" style="height:32px;filter:brightness(1.4);" />
+        </div>
+        <p>Manufacturer, Exporter &amp; Supplier of Laboratory Glasswares, Laboratory Burettes, Conical Flasks, Laboratory Funnels and Laboratory Tools under the brand CORNSIL®. ISO 9001:2015 Certified. Est. 1995, Pondicherry, India.</p>
+        <div class="foot-social">
+          <a href="https://api.whatsapp.com/send?phone=919486334647" target="_blank" aria-label="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 01-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5L9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4 0-.2-.2-.3-.4-.4z"/><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2z"/></svg></a>
+          <a href="https://www.exportersindia.com" target="_blank" aria-label="ExportersIndia"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <ul>
+          <li><a href="#instruments">Laboratory Instruments</a></li>
+          <li><a href="#glasswares">Laboratory Glasswares</a></li>
+          <li><a href="#glasswares">CORNSIL® Range</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reach Us</h5>
+        <p style="margin-bottom:10px;">No. 18, 2nd Main Road, Annamalai Nagar Extension, Nonankuppam, Ariyankuppam, Pondicherry – 605007, India</p>
+        <p><a href="https://api.whatsapp.com/send?phone=919486334647" target="_blank" style="color:var(--cyan);">+91 94863 34647 (WhatsApp)</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sabari Scientific Glass Equipments. All rights reserved.</span>
+      <span>GST: 34AGTPR5617H1ZX · Ariyankuppam, Pondicherry, India</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=919486334647&text=Hello%21+I+found+your+website+and+am+interested+in+your+products." target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 01-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5L9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4 0-.2-.2-.3-.4-.4z"/><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2z"/></svg>
+</a>
+
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // cursor glow
+  const glow = document.getElementById('cursor-glow');
+  window.addEventListener('mousemove', (e)=>{ glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+
+  // scroll progress
+  const bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', ()=>{
+    const h = document.documentElement;
+    const pct = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // counters
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = +el.getAttribute('data-target');
+        const raw = el.getAttribute('data-raw') === 'true';
+        const dur = 1400;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now-start)/dur, 1);
+          const eased = 1 - Math.pow(1-p, 3);
+          const val = Math.floor(eased*target);
+          el.textContent = raw ? val : val.toLocaleString();
+          if(p<1) requestAnimationFrame(tick);
+          else el.textContent = raw ? target : target.toLocaleString()+'+';
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  counters.forEach(c=>counterIO.observe(c));
+
+  // category tab filter
+  const tabs = document.querySelectorAll('.cat-tab');
+  const cards = document.querySelectorAll('#prodGrid .prod-card');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.getAttribute('data-cat');
+      cards.forEach(card=>{
+        const show = cat==='all' || card.getAttribute('data-cat')===cat;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // tilt effect on product cards
+  document.querySelectorAll('.prod-card').forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = `perspective(600px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
+  });
+
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.querySelector('.nav-links');
+  menuToggle.addEventListener('click', ()=>{
+    const open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    navLinks.style.cssText += open ? '' : 'position:absolute;top:66px;left:0;right:0;background:#0A1613;flex-direction:column;padding:20px 32px;border-bottom:1px solid var(--line);gap:16px;';
+  });
+
+  // back to top
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.scrollY>500); });
+  toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
