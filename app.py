@@ -71,7 +71,6 @@ def admin_logout():
 @app.route('/admin/dashboard')
 @login_required
 def admin_dashboard():
-    # Gather stats for the dashboard
     total_products = Product.query.count()
     total_orders = Order.query.count()
     total_customers = User.query.filter_by(role='Customer').count()
@@ -79,6 +78,62 @@ def admin_dashboard():
                            total_products=total_products,
                            total_orders=total_orders,
                            total_customers=total_customers)
+
+@app.route('/admin/categories', methods=['GET', 'POST'])
+@login_required
+def admin_categories():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        if name:
+            new_cat = Category(name=name, description=request.form.get('description'))
+            db.session.add(new_cat)
+            db.session.commit()
+            flash('Category added!', 'success')
+        return redirect(url_for('admin_categories'))
+    
+    categories = Category.query.all()
+    return render_template('admin/categories.html', categories=categories)
+
+@app.route('/admin/categories/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_category(id):
+    cat = Category.query.get_or_404(id)
+    db.session.delete(cat)
+    db.session.commit()
+    flash('Category deleted!', 'success')
+    return redirect(url_for('admin_categories'))
+
+@app.route('/admin/products', methods=['GET', 'POST'])
+@login_required
+def admin_products():
+    if request.method == 'POST':
+        new_prod = Product(
+            sku=request.form.get('sku'),
+            name=request.form.get('name'),
+            category_id=request.form.get('category_id'),
+            price=request.form.get('price'),
+            capacities=request.form.get('capacities'),
+            short_description=request.form.get('short_description'),
+            description=request.form.get('description'),
+            stock_quantity=request.form.get('stock_quantity')
+        )
+        db.session.add(new_prod)
+        db.session.commit()
+        flash('Product added!', 'success')
+        return redirect(url_for('admin_products'))
+        
+    products = Product.query.all()
+    categories = Category.query.all()
+    return render_template('admin/products.html', products=products, categories=categories)
+
+@app.route('/admin/products/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_product(id):
+    prod = Product.query.get_or_404(id)
+    db.session.delete(prod)
+    db.session.commit()
+    flash('Product deleted!', 'success')
+    return redirect(url_for('admin_products'))
 
 # ==========================================
 # PUBLIC API ROUTES (For index.html)
@@ -93,23 +148,21 @@ def home():
 
 @app.route('/api/products', methods=['GET'])
 def get_products():
-    # For Phase 1, if the DB is empty, we return a mock list so the frontend doesn't break
     products = Product.query.all()
     if not products:
-        # Fallback mock data
         return jsonify([
-            { 'id': 1, 'name': 'Separating Funnel Pear Shape', 'cat': 'funnel', 'price': 1250, 'caps': ['250ml', '500ml'], 'meta': 'Pear shape · PTFE stopcock', 'desc': 'High quality borosilicate glass.' },
-            { 'id': 2, 'name': 'Borosilicate Beaker Low Form', 'cat': 'beaker', 'price': 360, 'caps': ['100ml', '250ml'], 'meta': 'Low form · graduated', 'desc': 'Griffin low-form beakers.' }
+            { 'id': 1, 'name': 'Separating Funnel Pear Shape', 'cat': 'funnel', 'price': 1250, 'caps': ['250ml', '500ml'], 'meta': 'Pear shape · PTFE stopcock', 'desc': 'High quality borosilicate glass.' }
         ]), 200
     
     product_list = []
     for p in products:
+        caps_array = [c.strip() for c in p.capacities.split(',')] if p.capacities else ['Default']
         product_list.append({
             'id': p.id,
             'name': p.name,
-            'cat': p.category.name if p.category else 'uncategorized',
+            'cat': p.category.name.lower() if p.category else 'uncategorized',
             'price': p.price,
-            'caps': ['Default'], # To be expanded in Phase 2
+            'caps': caps_array,
             'meta': p.short_description,
             'desc': p.description
         })

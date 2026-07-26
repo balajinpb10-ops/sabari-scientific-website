@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Products - CORNSIL</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #F8FAFC; margin: 0; color: #1E293B; display: flex; height: 100vh; }
+    .sidebar { width: 250px; background: #1E293B; color: #F8FAFC; padding: 20px; box-sizing: border-box; flex-shrink: 0;}
+    .sidebar h2 { margin-top: 0; color: #38BDF8; font-size: 20px; margin-bottom: 30px; }
+    .sidebar a { display: block; color: #CBD5E1; text-decoration: none; padding: 12px 0; border-bottom: 1px solid #334155; }
+    .sidebar a:hover, .sidebar a.active { color: #fff; }
+    .main { flex: 1; padding: 40px; overflow-y: auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .header h1 { margin: 0; }
+    
+    .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 30px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #E2E8F0; }
+    th { background: #F1F5F9; font-weight: 600; color: #475569; }
+    
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+    input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; box-sizing: border-box; }
+    .btn { background: #2563EB; color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-danger { background: #EF4444; }
+    
+    .flash { padding: 10px; margin-bottom: 20px; border-radius: 6px; font-size: 14px; }
+    .flash.success { background: #DCFCE7; color: #166534; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>CORNSIL Admin</h2>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard Overview</a>
+  <a href="{{ url_for('admin_products') }}" class="active">Products</a>
+  <a href="{{ url_for('admin_categories') }}">Categories</a>
+  <a href="#">Orders (Phase 3)</a>
+</div>
+
+<div class="main">
+  <div class="header">
+    <h1>Manage Products</h1>
+  </div>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="card">
+    <h3>Add New Product</h3>
+    <form method="POST" action="{{ url_for('admin_products') }}">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>SKU (Product Code)</label>
+          <input type="text" name="sku" required>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select name="category_id" required>
+            {% for cat in categories %}
+              <option value="{{ cat.id }}">{{ cat.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" name="price" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label>Capacities (comma separated, e.g. 250ml,500ml)</label>
+          <input type="text" name="capacities" value="Default">
+        </div>
+        <div class="form-group">
+          <label>Stock Quantity</label>
+          <input type="number" name="stock_quantity" value="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Short Description (Meta)</label>
+        <input type="text" name="short_description">
+      </div>
+      <div class="form-group">
+        <label>Full Description</label>
+        <textarea name="description" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn">Add Product</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Inventory</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prod in products %}
+        <tr>
+          <td>{{ prod.sku }}</td>
+          <td><strong>{{ prod.name }}</strong></td>
+          <td>{{ prod.category.name if prod.category else 'N/A' }}</td>
+          <td>₹{{ prod.price }}</td>
+          <td>{{ prod.stock_quantity }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('delete_product', id=prod.id) }}" style="display:inline;">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

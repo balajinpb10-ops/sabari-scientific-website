@@ -24,11 +24,10 @@
 
 <div class="sidebar">
   <h2>CORNSIL Admin</h2>
-  <a href="#">Dashboard Overview</a>
-  <a href="#">Products (Phase 2)</a>
-  <a href="#">Categories (Phase 2)</a>
+  <a href="{{ url_for('admin_dashboard') }}" class="active">Dashboard Overview</a>
+  <a href="{{ url_for('admin_products') }}">Products</a>
+  <a href="{{ url_for('admin_categories') }}">Categories</a>
   <a href="#">Orders (Phase 3)</a>
-  <a href="#">Customers (Phase 3)</a>
 </div>
 
 <div class="main">

@@ -41,6 +41,9 @@ class Product(db.Model):
     stock_quantity = db.Column(db.Integer, default=0)
     moq = db.Column(db.Integer, default=1)
     
+    # Store capacities as a comma-separated string (e.g. "250ml,500ml,1000ml")
+    capacities = db.Column(db.String(255), nullable=True, default="Default")
+    
     is_published = db.Column(db.Boolean, default=True)
     is_featured = db.Column(db.Boolean, default=False)
     
