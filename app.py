@@ -56,7 +56,7 @@ def admin_login():
         else:
             flash('Login unsuccessful. Please check username and password.', 'danger')
             
-    return render_template('admin/login.html')
+    return render_template('templates/admin/login.html')
 
 @app.route('/admin/logout')
 @login_required
@@ -74,7 +74,7 @@ def admin_dashboard():
     total_products = Product.query.count()
     total_orders = Order.query.count()
     total_customers = User.query.filter_by(role='Customer').count()
-    return render_template('admin/dashboard.html', 
+    return render_template('templates/admin/dashboard.html', 
                            total_products=total_products,
                            total_orders=total_orders,
                            total_customers=total_customers)
@@ -92,7 +92,7 @@ def admin_categories():
         return redirect(url_for('admin_categories'))
     
     categories = Category.query.all()
-    return render_template('admin/categories.html', categories=categories)
+    return render_template('templates/admin/categories.html', categories=categories)
 
 @app.route('/admin/categories/delete/<int:id>', methods=['POST'])
 @login_required
@@ -124,7 +124,7 @@ def admin_products():
         
     products = Product.query.all()
     categories = Category.query.all()
-    return render_template('admin/products.html', products=products, categories=categories)
+    return render_template('templates/admin/products.html', products=products, categories=categories)
 
 @app.route('/admin/products/delete/<int:id>', methods=['POST'])
 @login_required
