@@ -2547,7 +2547,12 @@
         const res = await fetch('/api/products');
         PRODUCTS = await res.json();
       } catch (e) {
-        console.error("Failed to fetch products");
+        console.error("Failed to fetch products from backend, using fallback data for demo.");
+        PRODUCTS = [
+          { id: 1, name: 'Separating Funnel Pear Shape', cat: 'funnel', price: 1250, caps: ['250ml', '500ml'], meta: 'Pear shape · PTFE stopcock', desc: 'High quality borosilicate glass.' },
+          { id: 2, name: 'Borosilicate Beaker Low Form', cat: 'beaker', price: 360, caps: ['100ml', '250ml'], meta: 'Low form · graduated', desc: 'Griffin low-form beakers.' },
+          { id: 3, name: 'Erlenmeyer Flask', cat: 'flask', price: 420, caps: ['500ml', '1000ml'], meta: 'Narrow mouth · Graduated', desc: 'Used for mixing.' }
+        ];
       }
       renderCatStrip();
       renderHomeGrid();
@@ -2558,5 +2563,4 @@
     initApp();
   </script>
 </body>
-
 </html>

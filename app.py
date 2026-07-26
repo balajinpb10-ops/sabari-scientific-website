@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from models import db, User, Product, Category, Order, OrderItem
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 app.config['SECRET_KEY'] = 'sabari-enterprise-secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sabari.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
